@@ -348,7 +348,7 @@ defmodule LiveAdmin.Components.Container do
          Map.get(params, "prefix") == socket.assigns.prefix do
       socket
     else
-      push_redirect(socket,
+      push_navigate(socket,
         to:
           route_with_params(socket.assigns,
             params: Map.take(socket.assigns, [:per, :page, :sort_attr, :sort_dir, :prefix])
