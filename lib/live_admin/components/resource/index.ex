@@ -456,12 +456,12 @@ defmodule LiveAdmin.Components.Container.Index do
     socket =
       socket
       |> put_flash(
-        :success,
+        :info,
         trans("Action running on %{count} records: %{action}",
           inter: [count: Enum.count(ids), action: action]
         )
       )
-      |> push_patch(
+      |> push_redirect(
         to: route_with_params(socket.assigns, params: list_link_params(socket.assigns))
       )
 
@@ -475,8 +475,8 @@ defmodule LiveAdmin.Components.Container.Index do
     |> Keyword.merge(overrides)
   end
 
-  defp type_to_css_class({_, type, _}), do: type_to_css_class(type)
-  defp type_to_css_class({:array, {_, type, _}}), do: {:array, type} |> type_to_css_class()
+  defp type_to_css_class({_, {type, _}}), do: type_to_css_class(type)
+  defp type_to_css_class({:array, {_, {type, _}}}), do: {:array, type} |> type_to_css_class()
   defp type_to_css_class({:array, type}), do: "array.#{type}" |> type_to_css_class()
 
   defp type_to_css_class(type),
